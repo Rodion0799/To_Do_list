@@ -96,3 +96,16 @@ fun removeTask(listTasks: MutableList<Task>) {
     println("Задача удалена!\n")
 }
 
+
+/**
+ * Удаление всех задач
+ */
+fun clearTasks(listTasks: MutableList<Task>) {
+    if (listTasks.isEmpty()) {
+        println("У вас нет задач!")
+        return
+    }
+
+    listTasks.clear()
+    println("Задачи удалены!\n")
+}

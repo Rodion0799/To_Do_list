@@ -8,7 +8,8 @@ fun main() {
                     "2. Показать список\n" +
                     "3. Отметить как выполненную\n" +
                     "4. Удалить задачу\n" +
-                    "5. Выход"
+                    "5. Удалить все задачи\n" +
+                    "6. Выход"
         )
         print("Выберите ID: ")
         val userID = readLine()!!.trim().toIntOrNull()
@@ -22,7 +23,8 @@ fun main() {
             2 -> tasks(listTasks)
             3 -> markAsDone(listTasks)
             4 -> removeTask(listTasks)
-            5 -> {
+            5 -> clearTasks(listTasks)
+            6 -> {
                 println("До свидание!")
                 break
             }
