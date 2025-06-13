@@ -3,7 +3,7 @@ package app
 /**
  * Добавляет новую задачу в список
  */
-fun addTask(listTasks: MutableList<Task>) {
+fun addTask(listTasks: MutableListTask) {
     print("Введите название задачи: ")
     val userTitle = readLine()!!.trim()
     if (userTitle.isBlank()) {
@@ -18,7 +18,7 @@ fun addTask(listTasks: MutableList<Task>) {
 /**
  * Выводит список задач с индексами и статусами
  */
-fun tasks(listTasks: MutableList<Task>) {
+fun tasks(listTasks: MutableListTask) {
     if (listTasks.isEmpty()) {
         println("У вас нет задач!")
     }
@@ -34,7 +34,7 @@ fun tasks(listTasks: MutableList<Task>) {
 /**
  * Отмечает выбранную задачу как выполненную
  */
-fun markAsDone(listTasks: MutableList<Task>) {
+fun markAsDone(listTasks: MutableListTask) {
 
     if (listTasks.isEmpty()) {
         println("У вас нет задач!")
@@ -72,7 +72,7 @@ fun markAsDone(listTasks: MutableList<Task>) {
 /**
  * Удаляет задачу по ID
  */
-fun removeTask(listTasks: MutableList<Task>) {
+fun removeTask(listTasks: MutableListTask) {
 
     if (listTasks.isEmpty()) {
         println("Нету задач!")
@@ -100,7 +100,7 @@ fun removeTask(listTasks: MutableList<Task>) {
 /**
  * Удаление всех задач
  */
-fun clearTasks(listTasks: MutableList<Task>) {
+fun clearTasks(listTasks: MutableListTask) {
     if (listTasks.isEmpty()) {
         println("У вас нет задач!")
         return

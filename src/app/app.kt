@@ -1,5 +1,10 @@
 package app
 
+/**
+ * typealias - псевдоним
+ */
+typealias MutableListTask = MutableList<Task>
+
 fun main() {
     val listTasks = mutableListOf<Task>()
     while (true) {
@@ -13,7 +18,7 @@ fun main() {
         )
         print("Выберите ID: ")
         val userID = readLine()!!.trim().toIntOrNull()
-        if (userID == null || userID !in 1..5) {
+        if (userID == null || userID !in 1..6) {
             println("Ошибка!")
             return
         }
