@@ -4,14 +4,21 @@ package app
  * Добавляет новую задачу в список
  */
 fun addTask(listTasks: MutableListTask) {
-    print("Введите название задачи: ")
-    val userTitle = readLine()!!.trim()
-    if (userTitle.isBlank()) {
-        println("Ошибка!")
+    print("Введите заголовок задачи: ")
+    val userHeading = readLine()!!.trim()
+    if (userHeading.isBlank()) {
+        println(ERROR)
         return
     }
 
-    listTasks.add(Task(userTitle, false))
+    print("Введите название задачи: ")
+    val userTitle = readLine()!!.trim()
+    if (userTitle.isBlank()) {
+        println(ERROR)
+        return
+    }
+
+    listTasks.add(Task(userHeading,userTitle, false))
     println("Задача добавлена!\n")
 }
 
@@ -25,7 +32,37 @@ fun tasks(listTasks: MutableListTask) {
 
     listTasks.forEachIndexed { index, task ->
         val resultIsCompleted = if (task.isCompleted) "[x]" else "[]"
-        println("${index + 1}. ${task.title} $resultIsCompleted")
+        println("${index + 1}. ${task.heading}\n${task.title} $resultIsCompleted\n")
+    }
+    println()
+}
+
+/**
+ * Поиск по заголовку
+ */
+fun searchTasks(listTasks: MutableListTask) {
+    if (listTasks.isEmpty()) {
+        println(ERROR)
+        return
+    }
+
+    print("Введите заголовок задачи: ")
+    val userHeading = readLine()!!.trim()
+    if (userHeading.isBlank()) {
+        println(ERROR)
+        return
+    }
+
+    val searchTasks = listTasks.filter { userHeading == it.heading }
+
+    if (searchTasks.isEmpty()) {
+        println("Не найдено!")
+        return
+    }
+
+    searchTasks.forEachIndexed { index, task ->
+        val resultIsCompleted = if (task.isCompleted) "[x]" else "[]"
+        println("${index + 1}. ${task.heading}\n${task.title} $resultIsCompleted\n")
     }
     println()
 }
@@ -43,14 +80,14 @@ fun markAsDone(listTasks: MutableListTask) {
 
     listTasks.forEachIndexed { index, task ->
         val resultIsCompleted = if (task.isCompleted) "[x]" else "[]"
-        println("${index + 1}. ${task.title} $resultIsCompleted")
+        println("${index + 1}. ${task.heading}\n${task.title} $resultIsCompleted\n")
     }
 
     print("Введите ID задачи: ")
     val userID = readLine()!!.trim().toIntOrNull()
 
     if (userID == null || userID < 1 || userID > listTasks.size) {
-        println("Ошибка!")
+        println(ERROR)
         return
     }
 
@@ -63,7 +100,7 @@ fun markAsDone(listTasks: MutableListTask) {
         return
     }
 
-    listTasks[index] = Task(tasks.title, true)
+    listTasks[index] = Task(tasks.heading, tasks.title, true)
 
     println("Задача: \"${tasks.title}\" отмечена как выполненная!\n")
 }
@@ -81,13 +118,13 @@ fun removeTask(listTasks: MutableListTask) {
 
     listTasks.forEachIndexed { index, task ->
         val resultIsCompleted = if (task.isCompleted) "[x]" else "[]"
-        println("${index + 1}. ${task.title} $resultIsCompleted")
+        println("${index + 1}. ${task.heading}\n${task.title} $resultIsCompleted\n")
     }
 
     print("Выберите ID: ")
     val userID = readLine()!!.trim().toIntOrNull()
     if (userID == null || userID < 1 || userID > listTasks.size) {
-        println("Ошибка!")
+        println(ERROR)
         return
     }
 
